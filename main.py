@@ -18,7 +18,7 @@ import tkinter.filedialog as fd
 import tkinter.messagebox as mb
 
 
-class Notepad:
+class Notepad(object):
     """
     The Notepad GUI generator
     """
