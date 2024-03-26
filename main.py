@@ -12,7 +12,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
-import os
+import os.path
 import tkinter as tk
 import tkinter.filedialog as fd
 import tkinter.messagebox as mb
@@ -208,7 +208,8 @@ class Notepad(object):
             # Saves as a new File
             self.__file = fd.asksaveasfilename(initialfile="Untitled.txt",
                                                defaultextension=".txt",
-                                               filetypes=[("All Files", "*.*"), ("Text Documents", "*.txt")])
+                                               filetypes=[("All Files", "*.*"),
+                                                          ("Text Documents", "*.txt")])
             if self.__file == "":
                 self.__file = None
             else:
