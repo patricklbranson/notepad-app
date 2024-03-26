@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="69fd0bb1-8799-4820-9a23-c911ece24694" name="Changes" comment="Updated main.py &amp; README.md" />
+    <list default="true" id="69fd0bb1-8799-4820-9a23-c911ece24694" name="Changes" comment="Update .idea file" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -25,16 +25,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/plbra/source/PycharmProjects/file-manager/.idea/copyright/Apache_2_0.xml&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;copyright&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.main.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/plbra/source/PycharmProjects/file-manager/.idea/copyright/Apache_2_0.xml",
+    "settings.editor.selected.configurable": "copyright"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\plbra\source\PycharmProjects\notepad-app\assets" />
@@ -136,7 +137,15 @@
       <option name="project" value="LOCAL" />
       <updated>1711413883194</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Update .idea file">
+      <option name="closed" value="true" />
+      <created>1711414363765</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1711414363765</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -144,6 +153,7 @@
     <MESSAGE value="Added copyright information and updated main.py" />
     <MESSAGE value="Updated main.py" />
     <MESSAGE value="Updated main.py &amp; README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated main.py &amp; README.md" />
+    <MESSAGE value="Update .idea file" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update .idea file" />
   </component>
 </project>

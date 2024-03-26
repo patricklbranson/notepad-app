@@ -111,8 +111,8 @@ class Notepad(object):
         self.__root.geometry("%dx%d+%d+%d" % (self.__width, self.__height, left_align, top_align))
 
         # To make the text area auto resizable
-        self.__root.grid_rowconfigure(0, weight=1)
-        self.__root.grid_columnconfigure(0, weight=1)
+        self.__root.grid_rowconfigure(index=0, weight=1)
+        self.__root.grid_columnconfigure(index=0, weight=1)
 
         # Add controls (widget)
         self.__text_area.grid(sticky=tk.N + tk.E + tk.S + tk.W)
