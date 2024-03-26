@@ -20,64 +20,65 @@ import tkinter.messagebox as mb
 
 class Notepad:
     """
-
+    The Notepad GUI generator
     """
 
     __root: tk.Tk = tk.Tk()
     """
-    
+    The root (main) GUI window frame
     """
 
     __width: int = 300
     """
-    
+    The default window width
     """
 
     __height: int = 300
     """
-    
+    The default window height
     """
 
     __text_area: tk.Text = tk.Text(master=__root)
     """
-    
+    The text area
     """
 
     __menu_bar: tk.Menu = tk.Menu(master=__root)
     """
-    
+    The menu bar
     """
 
     __file_menu: tk.Menu = tk.Menu(master=__menu_bar, tearoff=0)
     """
-    
+    The file menu
     """
 
     __edit_menu: tk.Menu = tk.Menu(master=__menu_bar, tearoff=0)
     """
-    
+    The edit menu
     """
 
     __help_menu: tk.Menu = tk.Menu(master=__menu_bar, tearoff=0)
     """
-    
+    The help menu
     """
 
     __scrollbar: tk.Scrollbar = tk.Scrollbar(master=__text_area)
     """
-    
+    The scrollbar
     """
 
     __file: str | None
     """
-    
+    The file to be saved as .txt file
     """
 
     # noinspection PyBroadException
     def __init__(self, **kwargs):
         """
+        Initializes the Notepad class
 
-        :param kwargs:
+        :param kwargs: the key arguments
         """
         # Set icon
         try:
@@ -149,14 +150,29 @@ class Notepad:
         self.__scrollbar.config(command=self.__text_area.yview)
         self.__text_area.config(yscrollcommand=self.__scrollbar.set)
 
-    def __quit_application(self):
+    def __quit_application(self) -> None:
+        """
+        Closes the application
+
+        :return: None - "void" function
+        """
         self.__root.destroy()
 
     # noinspection PyMethodMayBeStatic
-    def __show_about(self):
+    def __show_about(self) -> None:
+        """
+        Shows the "about" message box
+
+        :return: None - "void" function
+        """
         mb.showinfo("Notepad", "Written by Patrick L. Branson")
 
-    def __open_file(self):
+    def __open_file(self) -> None:
+        """
+        Opens the file
+
+        :return: None - "void" function
+        """
         self.__file = fd.askopenfilename(defaultextension=".txt", filetypes=[("All Files", "*.*"),
                                                                              ("Text Documents", "*.txt")])
         if self.__file == "":
@@ -172,12 +188,22 @@ class Notepad:
 
             file.close()
 
-    def __new_file(self):
+    def __new_file(self) -> None:
+        """
+        Creates a new file
+
+        :return: None - "void" function
+        """
         self.__root.title("Untitled - Notepad")
         self.__file = None
         self.__text_area.delete(index1=1.0, index2=tk.END)
 
-    def __save_file(self):
+    def __save_file(self) -> None:
+        """
+        Saves the file
+
+        :return: None - "void" function
+        """
         if self.__file is None:
             # Saves as a new File
             self.__file = fd.asksaveasfilename(initialfile="Untitled.txt",
@@ -199,35 +225,35 @@ class Notepad:
             file.write(self.__text_area.get(index1=1.0, index2=tk.END))
             file.close()
 
-    def __cut(self):
+    def __cut(self) -> None:
         """
+        Creates the "cut" command
 
-
-        :return:
+        :return: None - "void" function
         """
         self.__text_area.event_generate("<<Cut>>")
 
     def __copy(self):
         """
+        Creates the "copy" command
 
-
-        :return:
+        :return: None - "void" function
         """
         self.__text_area.event_generate("<<Copy>>")
 
     def __paste(self):
         """
+        Creates the "paste" command
 
-
-        :return:
+        :return: None - "void" function
         """
         self.__text_area.event_generate("<<Paste>>")
 
     def run(self):
         """
+        Runs the "mainloop" addition
 
-
-        :return:
+        :return: None - "void" function
         """
         self.__root.mainloop()
 
