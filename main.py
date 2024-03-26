@@ -13,10 +13,9 @@
 #  limitations under the License.
 
 import os
-
 import tkinter as tk
-import tkinter.messagebox as mb
 import tkinter.filedialog as fd
+import tkinter.messagebox as mb
 
 
 class Notepad:
@@ -64,16 +63,17 @@ class Notepad:
     
     """
 
-    __scroll_bar: tk.Scrollbar = tk.Scrollbar(master=__text_area)
+    __scrollbar: tk.Scrollbar = tk.Scrollbar(master=__text_area)
     """
     
     """
 
-    __file: None
+    __file: str | None
     """
     
     """
 
+    # noinspection PyBroadException
     def __init__(self, **kwargs):
         """
 
@@ -82,7 +82,7 @@ class Notepad:
         # Set icon
         try:
             self.__root.wm_iconbitmap("./assets/notepad.ico")
-        except:
+        except Exception:
             pass
 
         # Set window size (the default is 300x300)
@@ -114,33 +114,121 @@ class Notepad:
         self.__root.grid_columnconfigure(0, weight=1)
 
         # Add controls (widget)
-        self.__text_area.grid()
+        self.__text_area.grid(sticky=tk.N + tk.E + tk.S + tk.W)
+
+        # To open a new file
+        self.__file_menu.add_command(label="New", command=self.__new_file)
+
+        # To open an existing file
+        self.__file_menu.add_command(label="Open", command=self.__open_file)
+
+        # To save the current file
+        self.__file_menu.add_command(label="Save", command=self.__save_file)
+
+        # To create a line inn the dialog box
+        self.__file_menu.add_separator()
+        self.__file_menu.add_command(label="Exit", command=self.__quit_application)
+        self.__menu_bar.add_cascade(label="File", menu=self.__file_menu)
+
+        # To give the feature of cut, copy, & paste
+        self.__edit_menu.add_command(label="Cut", command=self.__cut)
+        self.__edit_menu.add_command(label="Copy", command=self.__copy)
+        self.__edit_menu.add_command(label="Paste", command=self.__paste)
+
+        # To give the feature of editing
+        self.__menu_bar.add_cascade(label="Edit", menu=self.__edit_menu)
+
+        # To create the feature of description of the notepad
+        self.__help_menu.add_command(label="About Notepad", command=self.__show_about)
+        self.__menu_bar.add_cascade(label="Help", menu=self.__help_menu)
+
+        self.__root.config(menu=self.__menu_bar)
+        self.__scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
+
+        # Scrollbar will adjust automatically according to content
+        self.__scrollbar.config(command=self.__text_area.yview)
+        self.__text_area.config(yscrollcommand=self.__scrollbar.set)
 
     def __quit_application(self):
         self.__root.destroy()
 
+    # noinspection PyMethodMayBeStatic
     def __show_about(self):
-        mb.showinfo("Notepad", "Times New Roman")
+        mb.showinfo("Notepad", "Written by Patrick L. Branson")
 
     def __open_file(self):
-        pass
+        self.__file = fd.askopenfilename(defaultextension=".txt", filetypes=[("All Files", "*.*"),
+                                                                             ("Text Documents", "*.txt")])
+        if self.__file == "":
+            # No file to open
+            self.__file = None
+        else:
+            # Try to open the file & sets the window title
+            self.__root.title(os.path.basename(self.__file) + " - Notepad")
+            self.__text_area.delete(index1=1.0, index2=tk.END)
+
+            file = open(file=self.__file, mode="r")
+            self.__text_area.insert(1.0, file.read())
+
+            file.close()
 
     def __new_file(self):
-        pass
+        self.__root.title("Untitled - Notepad")
+        self.__file = None
+        self.__text_area.delete(index1=1.0, index2=tk.END)
 
     def __save_file(self):
-        pass
+        if self.__file is None:
+            # Saves as a new File
+            self.__file = fd.asksaveasfilename(initialfile="Untitled.txt",
+                                               defaultextension=".txt",
+                                               filetypes=[("All Files", "*.*"), ("Text Documents", "*.txt")])
+            if self.__file == "":
+                self.__file = None
+            else:
+                # Try to save the file
+                file = open(file=self.__file, mode="w")
+                file.write(self.__text_area.get(index1=1.0, index2=tk.END))
+                file.close()
+
+                # Change the window title
+                self.__root.title(os.path.basename(self.__file) + " - Notepad")
+
+        else:
+            file = open(file=self.__file, mode="w")
+            file.write(self.__text_area.get(index1=1.0, index2=tk.END))
+            file.close()
 
     def __cut(self):
+        """
+
+
+        :return:
+        """
         self.__text_area.event_generate("<<Cut>>")
 
     def __copy(self):
+        """
+
+
+        :return:
+        """
         self.__text_area.event_generate("<<Copy>>")
 
     def __paste(self):
+        """
+
+
+        :return:
+        """
         self.__text_area.event_generate("<<Paste>>")
 
     def run(self):
+        """
+
+
+        :return:
+        """
         self.__root.mainloop()
 
 
